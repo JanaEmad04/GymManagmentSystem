@@ -12,10 +12,15 @@ public class MemberDatabase {
     private String fileName;
     private ArrayList<Member> records;
 
+    public MemberDatabase(String fileName) {
+        this.fileName = fileName+".txt"; //Initialized the ArrayList as it wasn't initialized 
+        this.records=new ArrayList<>();
+    }
+
     void readFromFile() throws FileNotFoundException //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
     {
-        File f = new File("fileName");
-        Scanner s = new Scanner(f);
+        File f = new File(fileName);
+        Scanner s = new Scanner(f); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
         ArrayList<String> membersInfo = new ArrayList<>();
         while (s.hasNextLine()) {
             membersInfo.add(s.nextLine());
