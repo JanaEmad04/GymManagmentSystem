@@ -1,6 +1,6 @@
 package gymmanagmentsystem;
 
-public class Trainer {
+public class Trainer implements Database {
    private String trainerID;
    private String name;
    private String email;
@@ -15,12 +15,14 @@ public class Trainer {
         this.phoneNumber = phoneNumber;
     }
    
+   @Override
   public String lineRepresentation()
    {
-       String s = trainerID+", "+name+", "+email+", "+speciality+", "+phoneNumber;
+       String s = String.join(",",trainerID,name,email,speciality,phoneNumber);
        return s;
    }
 
+   @Override
    public String getSearchKey()
    {
        return trainerID;
