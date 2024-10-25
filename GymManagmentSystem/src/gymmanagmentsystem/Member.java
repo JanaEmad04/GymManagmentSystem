@@ -1,6 +1,6 @@
 package gymmanagmentsystem;
 
-public class Member {
+public class Member implements Database{
     private String memberId;
     private String name;
     private String membershipType;
@@ -17,12 +17,14 @@ public class Member {
         this.status = status;
     }
 
-public String lineRepresentation()
+    @Override
+    public String lineRepresentation()
    {
-       String s = memberId+", "+name+", "+membershipType+", "+email+", "+phoneNumber+", "+status;
+       String s = String.join(",", memberId,name,membershipType,email,phoneNumber,status);
        return s;
    }
 
+    @Override
    public String getSearchKey()
    {
        return memberId;
