@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class ClassDatabase {
 
-    String fileName;
-    ArrayList<Class> records;
+    private String fileName;
+    private ArrayList<Class> records;
 
     public void readFromFile() throws FileNotFoundException //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
     {
@@ -101,5 +101,6 @@ public class ClassDatabase {
             w.write(records.get(i).lineRepresentation() + "\n");
         }
         w.flush();
+        w.close();
     }
 }
