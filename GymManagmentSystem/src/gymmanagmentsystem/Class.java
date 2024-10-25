@@ -1,6 +1,6 @@
 package gymmanagmentsystem;
 
-public class Class {
+public class Class implements Database {
 
     private String classId;
     private String className;
@@ -16,22 +16,23 @@ public class Class {
         this.availableSeats = availableSeats;
     }
 
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    @Override
     public String lineRepresentation() {
-        String s = classId + ", " + className + ", " + trainerId + ", " + duration + ", " + availableSeats;
+        String s = String.join(",", classId, className, trainerId) + "," + duration + "," + availableSeats;
         return s;
     }
 
+    @Override
     public String getSearchKey() {
         return classId;
     }
 
-    public int getAvailableSeats()
-    {
-        return availableSeats;
-    }
-    
-    public void setAvailableSeats(int availableSeats)
-    {
-        this.availableSeats = availableSeats;
-    }
 }
