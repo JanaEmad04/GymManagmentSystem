@@ -53,7 +53,18 @@ public class TrainerRole {
     
     public boolean cancelRegistration (String memberID, String classID)
     {
+        //issues a refund asdo eh??
+        if(registrationDatabase.contains(memberID+","+classID))
+        {
+        MemberClassRegistration temp=registrationDatabase.getRecord(memberID+","+classID);
+        Class classToRegister = classDatabase.getRecord(classID);
+        classToRegister.setAvailableSeats(classToRegister.getAvailableSeats()+1);
+        //verfies the date m4 fahma a verify eh?
+        temp.setRegistrationStatus("cancelled");
         return true;
+        }
+        return false;
+        
     }
     public ArrayList<MemberClassRegistration> getListOfRegistrations ()
     {
@@ -63,13 +74,5 @@ public class TrainerRole {
     {
     //Writes all unsaved member, class, and registration data to their respective files 
     //before logging out. 
-    }
-    public void setRegistrationStatus(String status) {
-        
-    }
-
-    public LocalDate getRegistrationDate() {
-        //M4 3arfa asdo el regDate bat3 lma saglt wala now?
-        return null;
     }
 }
