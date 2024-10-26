@@ -29,6 +29,11 @@ public class MemberClassRegistration implements Database {
     public LocalDate getRegistrationDate() {
         return registrationDate;
     }
+    
+    public void setRegistrationStatus(String status) {
+       this.status=status;
+    }
+
    
      @Override
     public String lineRepresentation()
@@ -36,7 +41,7 @@ public class MemberClassRegistration implements Database {
        String s = String.join(",", memberId,classId)+","+registrationDate+","+status;
        return s;
    }
-
+    
     @Override
    public String getSearchKey()
    {
