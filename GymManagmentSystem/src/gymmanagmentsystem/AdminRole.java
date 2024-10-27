@@ -19,9 +19,8 @@ public class AdminRole {
                 break;
             }
         }
-        System.out.println("Size:"+dataBase.returnAllRecords().size());
+        
         if (flag) {
-            System.out.println("IM here");
             Trainer newTrainer = new Trainer(trainerId, name, email, speciality, phoneNumber);
             dataBase.insertRecord(newTrainer);
         }
@@ -41,8 +40,6 @@ public class AdminRole {
         }
         if (indexRecord >= 0) {
             dataBase.returnAllRecords().remove(indexRecord);
-        } else {
-            System.out.println("This Trianer Does Not Exist.");
         }
     }
 

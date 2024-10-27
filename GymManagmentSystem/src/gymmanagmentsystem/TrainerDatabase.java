@@ -26,8 +26,8 @@ public class TrainerDatabase implements Database<Trainer> {
         File f = new File(fileName); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
         Scanner s;
         try {
+            f.createNewFile();
             
-            if(f.createNewFile()) System.out.println("New File Created.");
             ArrayList<String> trainersInfo = new ArrayList<>();
             s = new Scanner(f);
             while (s.hasNextLine()) {
@@ -97,11 +97,9 @@ public class TrainerDatabase implements Database<Trainer> {
     }
 
     public void insertRecord(Trainer record) {
-        if (contains(record.getSearchKey())) {
-            System.out.println("This Trainer Already Exists.");
-        } else {
-            records.add(record);
-        }
+        if (!contains(record.getSearchKey())) {
+           records.add(record);
+        } 
     }
 
     @Override
@@ -117,9 +115,8 @@ public class TrainerDatabase implements Database<Trainer> {
         }
         if (flag) {
             records.remove(indexRecord);
-        } else {
-            System.out.println("This Trainer Does Not Exist.");
-        }
+        } 
+        
     }
 
     @Override

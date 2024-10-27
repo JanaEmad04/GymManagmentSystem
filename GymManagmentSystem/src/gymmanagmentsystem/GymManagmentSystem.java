@@ -46,10 +46,6 @@ public class GymManagmentSystem {
                 mark += 1;
                 System.out.println("Duplicate trainer not added. Mark: " + mark);
             }
-            else
-            {
-                System.out.println("Added Dup");
-            }
 
             // Adding another Trainer Test
             admin.addTrainer("T002", "David", "david@fitlife.com", "Yoga", "0123456789");
@@ -59,9 +55,7 @@ public class GymManagmentSystem {
             }
 
             // Removing Trainer Test
-            System.out.println("Size before:"+admin.getListOfTrainers().size());
             admin.removeTrainer("T001");
-            System.out.println("Size before:"+admin.getListOfTrainers().size());
             if (admin.getListOfTrainers().size() == 1) {
                 mark += 1;
                 System.out.println("Trainer removed successfully. Mark: " + mark);
@@ -123,10 +117,9 @@ public class GymManagmentSystem {
                 mark += 0.5;
                 System.out.println("Duplicate class not added. Mark: " + mark);
             }
-            //System.out.println("first: "+trainer.getListOfMembers().get(0).getSearchKey());
+           
             // Register Member to Class Test
             boolean registered = trainer.registerMemberForClass(trainer.getListOfMembers().get(0).getSearchKey(), "C001", LocalDate.now());
-            //System.out.println("Boolean:"+registered);
             if (registered && trainer.getListOfClasses().get(0).getAvailableSeats() == 0 && trainer.getListOfRegistrations().get(0).getSearchKey().equals("M001,C001")) {
                 mark += 1.5;
                 System.out.println("Member registered successfully to class. Mark: " + mark);
@@ -150,18 +143,20 @@ public class GymManagmentSystem {
 
     public static double testRegistrationManagement() {
         double mark = 0;
-        try {
+      try {
             TrainerRole trainer = new TrainerRole();
 
-            // Register Member for Non-Existent Class Test
-            boolean registered = trainer.registerMemberForClass("M001", "C002", LocalDate.now());
+            
+// Register Member for Non-Existent Class Test
+           boolean registered = trainer.registerMemberForClass("M001", "C002", LocalDate.now());
+
             if (!registered) {
                 mark += 1;
                 System.out.println("Non-existent class registration prevented. Mark: " + mark);
             }
 
             // Register Non-Existent Member for Existing Class Test
-            registered = trainer.registerMemberForClass("M002", "C001", LocalDate.now());
+           registered = trainer.registerMemberForClass("M002", "C001", LocalDate.now());
             if (!registered) {
                 mark += 1;
                 System.out.println("Non-existent member registration prevented. Mark: " + mark);
@@ -191,7 +186,7 @@ public class GymManagmentSystem {
             }
 
             // Invalid Cancellation Test (after 3 days)
-            LocalDate oldDate = LocalDate.now().minusDays(5);
+            LocalDate oldDate = LocalDate.now().minusDays(5); 
             registered = trainer.registerMemberForClass("M002", "C002", oldDate);
             if (!registered) {
                 mark += 1;
@@ -207,7 +202,7 @@ public class GymManagmentSystem {
                 System.out.println("Invalid cancellation prevented for member. Mark: " + mark);
             }
 
-            trainer.logout();
+           trainer.logout();
 
         } catch (Exception e) {
             System.out.println("Registration Management Test Failed: " + e.getMessage());

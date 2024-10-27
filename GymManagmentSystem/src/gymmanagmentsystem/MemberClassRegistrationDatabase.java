@@ -27,8 +27,7 @@ public class  MemberClassRegistrationDatabase implements Database<MemberClassReg
     {File f = new File(fileName);
         try //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
         {
-            if(f.createNewFile()) 
-                System.out.println("New File Created.");
+            f.createNewFile();
             //Read File
              Scanner s = new Scanner(f); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
             ArrayList<String> MemberClassInfo = new ArrayList<>();
@@ -54,9 +53,7 @@ public class  MemberClassRegistrationDatabase implements Database<MemberClassReg
         String memeberId = separatedStr[0];
         String classId = separatedStr[1];
         String status = separatedStr[2];
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        // Parse the date part to LocalDate
-        LocalDate registrationDate = LocalDate.parse(separatedStr[3], formatter);
+        LocalDate registrationDate = LocalDate.parse(separatedStr[3]);
         MemberClassRegistration newMemberRegister = new MemberClassRegistration(memeberId, classId, status, registrationDate);
         return newMemberRegister;
     }
@@ -83,7 +80,7 @@ public class  MemberClassRegistrationDatabase implements Database<MemberClassReg
 
     @Override
     public MemberClassRegistration getRecord(String key) {
-        int indexRecord = 0;
+        int indexRecord=-1;
         boolean flag = false;
         for (int i = 0; i < records.size(); i++) {
             if (records.get(i).getSearchKey().equals(key)) {
@@ -101,9 +98,7 @@ public class  MemberClassRegistrationDatabase implements Database<MemberClassReg
     }
 
     public void insertRecord(MemberClassRegistration record) {
-        if (contains(record.getSearchKey())) {
-            System.out.println("This Member Already Exists.");
-        } else {
+        if (!contains(record.getSearchKey())) {
             records.add(record);
         }
     }
@@ -121,9 +116,8 @@ public class  MemberClassRegistrationDatabase implements Database<MemberClassReg
         }
         if (flag) {
             records.remove(indexRecord);
-        } else {
-            System.out.println("This Member isn't Registered in that class.");
         }
+        
     }
 
     @Override

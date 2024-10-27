@@ -9,6 +9,7 @@ public class TrainerRole {
     private MemberDatabase memberDatabase = new MemberDatabase("Member");
     private ClassDatabase classDatabase = new ClassDatabase("Class");
     private MemberClassRegistrationDatabase registrationDatabase = new MemberClassRegistrationDatabase("Registration");
+    // public static final String STATUS = "active";
 
     public TrainerRole() {
         memberDatabase.readFromFile();
@@ -24,12 +25,11 @@ public class TrainerRole {
                 break;
             }
         }
-        System.out.println("Size:" + memberDatabase.returnAllRecords().size());
+
         if (flag) {
             Member record = new Member(memberID, name, membershipType, email, phoneNumber, status);
-            memberDatabase.insertRecord(record); 
- System.out.println("Size:" + memberDatabase.returnAllRecords().size());
-//insertRecord will check if member already exists
+            memberDatabase.insertRecord(record);
+            //insertRecord will check if member already exists
         }
 
     }
@@ -46,9 +46,8 @@ public class TrainerRole {
                 break;
             }
         }
-        System.out.println("Size:" + classDatabase.returnAllRecords().size());
+        
         if (flag) {
-            System.out.println("IM here");
             Class new_class = new Class(classID, className, trainerID, duration, maxParticipants);
             classDatabase.insertRecord(new_class);
         }
@@ -63,23 +62,21 @@ public class TrainerRole {
         if (memberDatabase.contains(memberID) && classDatabase.contains(classID)) {
             Class classToRegister = classDatabase.getRecord(classID);
             if (classToRegister.getAvailableSeats() > 0) //If there are avaliable seats
-            {
-                classToRegister.setAvailableSeats(classToRegister.getAvailableSeats() - 1);
-                String status = "active";
-                registrationDate = LocalDate.now();
-                MemberClassRegistration record = new MemberClassRegistration(memberID, classID, status, registrationDate);
-                registrationDatabase.insertRecord(record);
-                System.out.println("Member registered for class.");
-                return true;
+            {      
+                    classToRegister.setAvailableSeats((classToRegister.getAvailableSeats()) - 1);
+                    String status = "active";
+                    MemberClassRegistration record = new MemberClassRegistration(memberID, classID, status, registrationDate);
+                    registrationDatabase.insertRecord(record);
+                    return true;
+            } 
+            else {
+                    return false;
+                 }
             }
-
-        }
-        System.out.println("There are no available seats.");
         return false;
     }
 
     public boolean cancelRegistration(String memberID, String classID) {
-        //issues a refund asdo eh??
         if (memberDatabase.contains(memberID) && classDatabase.contains(classID)) {
             if (registrationDatabase.contains(memberID + "," + classID)) {
                 MemberClassRegistration temp = registrationDatabase.getRecord(memberID + "," + classID);
@@ -91,8 +88,6 @@ public class TrainerRole {
                     classToRegister.setAvailableSeats(classToRegister.getAvailableSeats() + 1);
                     temp.setRegistrationStatus("cancelled");
                     return true;
-                } else {
-                    System.out.println("No refund allowed within more than 3 days.");
                 }
             }
         }

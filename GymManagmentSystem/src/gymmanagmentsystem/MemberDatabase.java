@@ -23,9 +23,7 @@ public class MemberDatabase implements Database<Member> {
     public void readFromFile() {
         File f = new File(fileName);
         try {
-            if (f.createNewFile()) {
-                System.out.println("New File Created.");
-            }
+            f.createNewFile();
             Scanner s = new Scanner(f);
             ArrayList<String> membersInfo = new ArrayList<>();
             while (s.hasNextLine()) {
@@ -94,11 +92,9 @@ public class MemberDatabase implements Database<Member> {
     }
 
     public void insertRecord(Member record) {
-        if (contains(record.getSearchKey())) {
-            System.out.println("This Member Already Exists.");
-        } else {
+        if (!contains(record.getSearchKey())) {
             records.add(record);
-        }
+        } 
     }
 
     @Override
@@ -114,8 +110,6 @@ public class MemberDatabase implements Database<Member> {
         }
         if (flag) {
             records.remove(indexRecord);
-        } else {
-            System.out.println("This Member Does Not Exist.");
         }
     }
 

@@ -37,14 +37,14 @@ public class MemberClassRegistration implements MainInterface {
      @Override
     public String lineRepresentation()
    {
-       String s = String.join(",", memberId,classId)+","+registrationDate+","+status;
+       String s = String.join(",", memberId,classId)+","+status+","+registrationDate;
        return s;
    }
     
     @Override
    public String getSearchKey()
    {
-       String s = String.join(",", memberId,classId);
+       String s = memberId+","+classId;
        return s;
    } 
     
