@@ -26,9 +26,10 @@ public class TrainerDatabase implements Database<Trainer> {
         File f = new File(fileName); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
         Scanner s;
         try {
-            s = new Scanner(f);
+            
             if(f.createNewFile()) System.out.println("New File Created.");
             ArrayList<String> trainersInfo = new ArrayList<>();
+            s = new Scanner(f);
             while (s.hasNextLine()) {
                 trainersInfo.add(s.nextLine());
             }

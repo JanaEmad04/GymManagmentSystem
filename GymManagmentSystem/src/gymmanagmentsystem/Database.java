@@ -1,8 +1,15 @@
 package gymmanagmentsystem;
 
-interface Database {
+import java.util.ArrayList;
 
-    String lineRepresentation();
+interface Database <ReturnType>{
 
-    String getSearchKey();
+    public void readFromFile();
+    public ReturnType createRecordFrom(String line);
+    public ArrayList<ReturnType> returnAllRecords();
+    public boolean contains(String key);
+    public ReturnType getRecord(String key);
+    public void deleteRecord(String key);
+    public void saveToFile();
+   
 }

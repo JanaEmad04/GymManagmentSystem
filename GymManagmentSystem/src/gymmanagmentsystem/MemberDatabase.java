@@ -20,25 +20,25 @@ public class MemberDatabase implements Database<Member> {
     }
 
     @Override
-    public void readFromFile() //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
-    {
+    public void readFromFile() {
         File f = new File(fileName);
-        Scanner s;
         try {
-            s = new Scanner(f);
-            if(f.createNewFile()) System.out.println("New File Created.");
+            if (f.createNewFile()) {
+                System.out.println("New File Created.");
+            }
+            Scanner s = new Scanner(f);
             ArrayList<String> membersInfo = new ArrayList<>();
             while (s.hasNextLine()) {
                 membersInfo.add(s.nextLine());
             }
-            for (int i = 0; i < membersInfo.size(); i++) {
-                Member member = createRecordFrom(membersInfo.get(i));
+            for (String memberInfo : membersInfo) {
+                Member member = createRecordFrom(memberInfo);
                 insertRecord(member);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(MemberDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MemberDatabase.class.getName()).log(Level.SEVERE, "File not found", ex);
         } catch (IOException ex) {
-            Logger.getLogger(MemberDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MemberDatabase.class.getName()).log(Level.SEVERE, "Error creating or reading the file", ex);
         }
     }
 
@@ -62,15 +62,15 @@ public class MemberDatabase implements Database<Member> {
 
     @Override
     public boolean contains(String key) {
-        if(records.isEmpty())
+        if (records.isEmpty()) {
             return false;
-        else
-        {
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getSearchKey().equals(key))
-            return true;
-        }
-        return false;
+        } else {
+            for (int i = 0; i < records.size(); i++) {
+                if (records.get(i).getSearchKey().equals(key)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
