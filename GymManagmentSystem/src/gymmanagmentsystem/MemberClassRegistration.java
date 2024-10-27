@@ -3,7 +3,7 @@ package gymmanagmentsystem;
 
 import java.time.LocalDate;
 
-public class MemberClassRegistration implements Database {
+public class MemberClassRegistration implements MainInterface {
     //This class represents a member's 
     //registration for a class and handles the registration data.
     private String memberId;
@@ -34,7 +34,6 @@ public class MemberClassRegistration implements Database {
        this.status=status;
     }
 
-   
      @Override
     public String lineRepresentation()
    {

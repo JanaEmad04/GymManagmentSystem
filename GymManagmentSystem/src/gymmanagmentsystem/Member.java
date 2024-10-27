@@ -1,6 +1,6 @@
 package gymmanagmentsystem;
 
-public class Member implements Database{
+public class Member implements MainInterface{
     private String memberId;
     private String name;
     private String membershipType;

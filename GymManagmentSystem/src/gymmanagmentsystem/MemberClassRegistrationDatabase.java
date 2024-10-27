@@ -9,8 +9,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class  MemberClassRegistrationDatabase {
+public class  MemberClassRegistrationDatabase implements Database<MemberClassRegistration> {
 
     private String fileName;
     private ArrayList<MemberClassRegistration> records;
@@ -20,23 +22,32 @@ public class  MemberClassRegistrationDatabase {
         this.records = new ArrayList<>();
     }
 
-    public void readFromFile() throws FileNotFoundException //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
+    @Override
+    public void readFromFile() //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
     {
-        File f = new File(fileName);
-        Scanner s = new Scanner(f); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
-        ArrayList<String> MemberClassInfo = new ArrayList<>();
-
-        //Read File
-        while (s.hasNextLine()) {
-            MemberClassInfo.add(s.nextLine());
+        try //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
+        {
+            File f = new File(fileName);
+            Scanner s = new Scanner(f); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
+            ArrayList<String> MemberClassInfo = new ArrayList<>();
+            if(f.createNewFile()) System.out.println("New File Created.");
+            //Read File
+            while (s.hasNextLine()) {
+                MemberClassInfo.add(s.nextLine());
+            }
+            for (int i = 0; i < MemberClassInfo.size(); i++) {
+                MemberClassRegistration newMemberRegister = createRecordFrom(MemberClassInfo.get(i));
+                insertRecord(newMemberRegister);
+            }
+            s.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MemberClassRegistrationDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MemberClassRegistrationDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i < MemberClassInfo.size(); i++) {
-            MemberClassRegistration newMemberRegister = createRecordFrom(MemberClassInfo.get(i));
-            insertRecord(newMemberRegister);
-        }
-        s.close();
     }
 
+    @Override
     public MemberClassRegistration createRecordFrom(String line) {
         String[] separatedStr = line.split(",");
         String memeberId = separatedStr[0];
@@ -49,19 +60,27 @@ public class  MemberClassRegistrationDatabase {
         return newMemberRegister;
     }
 
+    @Override
     public ArrayList<MemberClassRegistration> returnAllRecords() {
         return records;
     }
 
-    public Boolean contains(String key)  //Note that key is formatted memberID,classID
+    @Override
+    public boolean contains(String key)  //Note that key is formatted memberID,classID
     {
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getSearchKey().equals(key));
+        if(records.isEmpty())
             return false;
+        else
+        {
+        for (int i = 0; i < records.size(); i++) {
+            if (records.get(i).getSearchKey().equals(key))
+            return true;
         }
-        return true;
+        return false;
+        }
     }
 
+    @Override
     public MemberClassRegistration getRecord(String key) {
         int indexRecord = 0;
         boolean flag = false;
@@ -88,6 +107,7 @@ public class  MemberClassRegistrationDatabase {
         }
     }
 
+    @Override
     public void deleteRecord(String key) {
         int indexRecord = 0;
         boolean flag = false;
@@ -105,13 +125,25 @@ public class  MemberClassRegistrationDatabase {
         }
     }
 
-    public void saveToFile() throws IOException {
-        FileWriter w = new FileWriter(fileName, true);
-        for (int i = 0; i < records.size(); i++) {
-            w.write(records.get(i).lineRepresentation() + "\n");
+    @Override
+    public void saveToFile() {
+        FileWriter w = null;
+        try {
+            w = new FileWriter(fileName);
+            for (int i = 0; i < records.size(); i++) {
+                w.write(records.get(i).lineRepresentation() + "\n");
+            }   w.flush();
+            w.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MemberClassRegistrationDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                w.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MemberClassRegistrationDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        w.flush();
-        w.close();
     }
+
 }
 

@@ -1,6 +1,6 @@
 package gymmanagmentsystem;
 
-public class Trainer implements Database {
+public class Trainer implements MainInterface {
    private String trainerID;
    private String name;
    private String email;

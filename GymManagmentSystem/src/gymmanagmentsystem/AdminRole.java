@@ -14,11 +14,14 @@ public class AdminRole {
     public void addTrainer(String trainerId, String name, String email, String speciality, String phoneNumber) {
         boolean flag = true;
         for (int i = 0; i < dataBase.returnAllRecords().size(); i++) {
-            if (dataBase.contains(trainerId)) {
+            if ((dataBase.contains(trainerId))) {
                 flag = false;
+                break;
             }
         }
+        System.out.println("Size:"+dataBase.returnAllRecords().size());
         if (flag) {
+            System.out.println("IM here");
             Trainer newTrainer = new Trainer(trainerId, name, email, speciality, phoneNumber);
             dataBase.insertRecord(newTrainer);
         }
@@ -33,9 +36,10 @@ public class AdminRole {
         for (int i = 0; i < dataBase.returnAllRecords().size(); i++) {
             if (dataBase.contains(key)) {
                 indexRecord = i;
+                break;
             }
         }
-        if (indexRecord > 0) {
+        if (indexRecord >= 0) {
             dataBase.returnAllRecords().remove(indexRecord);
         } else {
             System.out.println("This Trianer Does Not Exist.");
@@ -44,6 +48,5 @@ public class AdminRole {
 
     public void logout() throws IOException {
         dataBase.saveToFile();
-        //arg3 lel menu tany aw a-logout somehow
     }
 }

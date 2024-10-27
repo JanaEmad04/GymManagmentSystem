@@ -6,8 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class ClassDatabase {
+public class ClassDatabase implements Database<Class>{
 
     private String fileName;
     private ArrayList<Class> records;
@@ -17,23 +19,32 @@ public class ClassDatabase {
         this.records = new ArrayList<>();
     }
 
-    public void readFromFile() throws FileNotFoundException //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
+    @Override
+    public void readFromFile()  //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
     {
-        File f = new File(fileName );
-        Scanner s = new Scanner(f); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
-        ArrayList<String> classesInfo = new ArrayList<>();
-
-        //Read File
-        while (s.hasNextLine()) {
-            classesInfo.add(s.nextLine());
+        try //read men el file w b3den y3mel trainer objects w b3deen y-store fel record list
+        {
+            File f = new File(fileName );
+            Scanner s = new Scanner(f); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
+            ArrayList<String> classesInfo = new ArrayList<>();
+            if(f.createNewFile()) System.out.println("New File Created.");
+            //Read File
+            while (s.hasNextLine()) {
+                classesInfo.add(s.nextLine());
+            }
+            for (int i = 0; i < classesInfo.size(); i++) {
+                Class gymClass = createRecordFrom(classesInfo.get(i));
+                insertRecord(gymClass);
+            }
+            s.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ClassDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ClassDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i < classesInfo.size(); i++) {
-            Class gymClass = createRecordFrom(classesInfo.get(i));
-            insertRecord(gymClass);
-        }
-        s.close();
     }
 
+    @Override
     public Class createRecordFrom(String line) {
         String[] separatedStr = line.split(",");
         String Id = separatedStr[0].trim();
@@ -45,18 +56,26 @@ public class ClassDatabase {
         return newClass;
     }
 
+    @Override
     public ArrayList<Class> returnAllRecords() {
         return records;
     }
 
-    public Boolean contains(String key) {
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getSearchKey().equals(key));
+    @Override
+    public boolean contains(String key) {
+        if(records.isEmpty())
             return false;
+        else
+        {
+        for (int i = 0; i < records.size(); i++) {
+            if (records.get(i).getSearchKey().equals(key))
+            return true;
         }
-        return true;
+        return false;
+        }
     }
 
+    @Override
     public Class getRecord(String key) {
         int indexRecord = 0;
         boolean flag = false;
@@ -83,6 +102,7 @@ public class ClassDatabase {
         }
     }
 
+    @Override
     public void deleteRecord(String key) {
         int indexRecord = 0;
         boolean flag = false;
@@ -100,12 +120,24 @@ public class ClassDatabase {
         }
     }
 
-    public void saveToFile() throws IOException {
-        FileWriter w = new FileWriter(fileName, true);
-        for (int i = 0; i < records.size(); i++) {
-            w.write(records.get(i).lineRepresentation() + "\n");
+    @Override
+    public void saveToFile() {
+        FileWriter w = null;
+        try {
+            w = new FileWriter(fileName);
+            for (int i = 0; i < records.size(); i++) {
+                w.write(records.get(i).lineRepresentation() + "\n");
+            }           w.flush();
+            w.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ClassDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                w.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ClassDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        w.flush();
-        w.close();
     }
+
 }
