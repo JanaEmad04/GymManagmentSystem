@@ -61,7 +61,7 @@ public class TrainerRole {
     public boolean registerMemberForClass(String memberID, String classID, LocalDate registrationDate) {
         if (memberDatabase.contains(memberID) && classDatabase.contains(classID)) {
             Class classToRegister = classDatabase.getRecord(classID);
-            if (classToRegister.getAvailableSeats() > 0) //If there are avaliable seats
+            if (classToRegister.getAvailableSeats() > 0 && !registrationDatabase.contains(memberID+","+classID)) //If there are avaliable seats
             {      
                     classToRegister.setAvailableSeats((classToRegister.getAvailableSeats()) - 1);
                     String status = "active";
