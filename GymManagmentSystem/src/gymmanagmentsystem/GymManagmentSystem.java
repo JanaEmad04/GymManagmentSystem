@@ -27,6 +27,7 @@ public class GymManagmentSystem {
         // Display final score
         System.out.println("Total Score: " + totalMark + "/18");
         System.out.println("7 Marks for comparing files");
+    
     }
 
     public static double testTrainerManagement() {
