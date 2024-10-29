@@ -44,7 +44,7 @@ public class MemberClassRegistration implements MainInterface {
     @Override
    public String getSearchKey()
    {
-       String s = memberId+","+classId;
+       String s = memberId+classId;
        return s;
    } 
     
