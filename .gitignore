@@ -1,0 +1,10 @@
+*.class
+GymManagmentSystem/build/classes/.netbeans_update_resources
+GymManagmentSystem/build/classes/.netbeans_automatic_build
+GymManagmentSystem/nbproject/private/private.properties
+GymManagmentSystem/nbproject/private/private.properties
+GymManagmentSystem/nbproject/private/private.xml
+*.txt
+GymManagmentSystem/GymManagmentSystem/test
+GymManagmentSyste/GymManagmentSystem/nbproject
+GymManagmentSystem/GymManagmentSystem/build
