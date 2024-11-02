@@ -40,25 +40,25 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="138" max="-2" attributes="0"/>
+                  <Component id="addTrainerButton" min="-2" pref="138" max="-2" attributes="0"/>
                   <EmptySpace pref="176" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="newTrainerName" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="newTrainerId" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="newTrainerEmail" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="newTrainerSpeciality" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="newTrainerPhone" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField1" max="32767" attributes="0"/>
-                      <Component id="jTextField2" max="32767" attributes="0"/>
-                      <Component id="jTextField3" max="32767" attributes="0"/>
-                      <Component id="jTextField4" max="32767" attributes="0"/>
-                      <Component id="jTextField5" pref="163" max="32767" attributes="0"/>
+                      <Component id="newTrainerIdText" max="32767" attributes="0"/>
+                      <Component id="newTrainerNameText" max="32767" attributes="0"/>
+                      <Component id="newTrainerEmailText" max="32767" attributes="0"/>
+                      <Component id="newTrainerSpecialityText" max="32767" attributes="0"/>
+                      <Component id="newTrainerPhoneText" pref="163" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               </Group>
@@ -69,81 +69,81 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="newTrainerId" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="newTrainerIdText" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField2" max="32767" attributes="0"/>
-                      <Component id="jLabel2" pref="36" max="32767" attributes="0"/>
+                      <Component id="newTrainerNameText" max="32767" attributes="0"/>
+                      <Component id="newTrainerName" pref="36" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField3" max="32767" attributes="0"/>
-                      <Component id="jLabel3" pref="36" max="32767" attributes="0"/>
+                      <Component id="newTrainerEmailText" max="32767" attributes="0"/>
+                      <Component id="newTrainerEmail" pref="36" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField4" max="32767" attributes="0"/>
-                      <Component id="jLabel4" pref="36" max="32767" attributes="0"/>
+                      <Component id="newTrainerSpecialityText" max="32767" attributes="0"/>
+                      <Component id="newTrainerSpeciality" pref="36" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel5" pref="36" max="32767" attributes="0"/>
-                      <Component id="jTextField5" max="32767" attributes="0"/>
+                      <Component id="newTrainerPhone" pref="36" max="32767" attributes="0"/>
+                      <Component id="newTrainerPhoneText" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="53" max="-2" attributes="0"/>
+                  <Component id="addTrainerButton" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="addTrainerButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="newTrainerId">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Id"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="newTrainerName">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="newTrainerEmail">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Email"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="newTrainerSpeciality">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Speciality"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="newTrainerPhone">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Phone Number"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="newTrainerIdText">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="newTrainerNameText">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="newTrainerEmailText">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="newTrainerSpecialityText">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField5">
+        <Component class="javax.swing.JTextField" name="newTrainerPhoneText">
         </Component>
       </SubComponents>
     </Container>
