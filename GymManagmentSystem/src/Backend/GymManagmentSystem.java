@@ -1,4 +1,4 @@
-package gymmanagmentsystem;
+package Backend;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package gymmanagmentsystem;
+package Backend;
 
 public class Member implements MainInterface{
     private String memberId;

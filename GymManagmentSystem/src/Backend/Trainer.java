@@ -1,4 +1,4 @@
-package gymmanagmentsystem;
+package Backend;
 
 public class Trainer implements MainInterface {
    private String trainerID;

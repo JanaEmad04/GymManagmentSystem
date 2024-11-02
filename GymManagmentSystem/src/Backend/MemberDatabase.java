@@ -1,4 +1,4 @@
-package gymmanagmentsystem;
+package Backend;
 
 public class MemberDatabase extends Database<Member> {
 
