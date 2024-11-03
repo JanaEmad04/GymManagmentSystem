@@ -34,6 +34,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 320]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -41,70 +46,73 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="69" pref="69" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="CancelRegistrationMemberId" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="CancelRegistrationMemberIdText" min="-2" pref="125" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="CancelRegistrationClassId" min="-2" pref="98" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="CancelRegistrationClassIdText" min="-2" pref="125" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="trainerUsername" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="trainerPassword" min="-2" pref="119" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="trainerPasswordText" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="trainerUsernameText" min="-2" pref="144" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="cancelRegistrationButton" min="-2" pref="155" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="tarinerLoginButton" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="CancelRegistrationMemberId" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="CancelRegistrationMemberIdText" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="trainerUsername" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="trainerUsernameText" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="CancelRegistrationClassId" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="CancelRegistrationClassIdText" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="trainerPasswordText" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="trainerPassword" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="47" max="32767" attributes="0"/>
-                  <Component id="cancelRegistrationButton" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="tarinerLoginButton" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="CancelRegistrationMemberId">
+        <Component class="javax.swing.JLabel" name="trainerUsername">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Member Id"/>
+            <Property name="text" type="java.lang.String" value="Username"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="CancelRegistrationClassId">
+        <Component class="javax.swing.JLabel" name="trainerPassword">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Class Id"/>
+            <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="CancelRegistrationMemberIdText">
-        </Component>
-        <Component class="javax.swing.JTextField" name="CancelRegistrationClassIdText">
-        </Component>
-        <Component class="javax.swing.JButton" name="cancelRegistrationButton">
+        <Component class="javax.swing.JButton" name="tarinerLoginButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancel Registration"/>
+            <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tarinerLoginButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="trainerUsernameText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="trainerUsernameTextActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="trainerPasswordText">
         </Component>
       </SubComponents>
     </Container>

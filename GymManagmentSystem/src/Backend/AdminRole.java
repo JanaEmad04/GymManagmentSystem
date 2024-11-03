@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class AdminRole {
 
-    private TrainerDatabase dataBase = new TrainerDatabase("Trainers");
+    public static TrainerDatabase dataBase = new TrainerDatabase("Trainers");
 
     public AdminRole() {
 
@@ -43,7 +43,7 @@ public class AdminRole {
         }
     }
 
-    public void logout() throws IOException {
+    public static void logout() throws IOException {
         dataBase.saveToFile();
     }
 }
