@@ -107,7 +107,7 @@ public class AdminLoginWindow extends javax.swing.JFrame {
         
         if(username.equals("username")&&password.equals("password"))
         {
-            AdminRoleWindow adminRole = new AdminRoleWindow();
+            AdminRoleWindow adminRoleWindow = new AdminRoleWindow();
             setVisible(false);
         }
         

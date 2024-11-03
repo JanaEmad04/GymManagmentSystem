@@ -1,19 +1,28 @@
 package Frontend;
 
 import Backend.AdminRole;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 public class RemoveTrainerWindow extends javax.swing.JFrame {
-
-    public RemoveTrainerWindow() {
-        
+    
+    private final AdminRoleWindow adminRoleWindow; //Store Reference to AdminRoleWindow
+    public RemoveTrainerWindow(AdminRoleWindow adminRoleWindow) {
+        this.adminRoleWindow=adminRoleWindow;
         initComponents();
         setContentPane(jPanel1);
         setTitle("Remove Trainer");
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                adminRoleWindow.setVisible(true);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -77,14 +86,19 @@ public class RemoveTrainerWindow extends javax.swing.JFrame {
 
     private void removeTrainerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTrainerButtonActionPerformed
         // TODO add your handling code here:
-         AdminRole adminRole = new AdminRole();
+        
         String trainerId = removeTrainerIdText.getText();
         
         if(AdminRole.dataBase.contains(trainerId))
         {
-            adminRole.removeTrainer(trainerId);
-            JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" removed successfully!","Message",JOptionPane.PLAIN_MESSAGE);
-        }
+            adminRoleWindow.adminRole.removeTrainer(trainerId);
+            JOptionPane.showMessageDialog(this, 
+            "Trainer with ID= "+trainerId+" removed successfully!", 
+            "Success", 
+            JOptionPane.PLAIN_MESSAGE);
+          adminRoleWindow.setVisible(true);
+          dispose();
+           }
         else  JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" does not exist!","Message",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_removeTrainerButtonActionPerformed
 
@@ -115,7 +129,6 @@ public class RemoveTrainerWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RemoveTrainerWindow().setVisible(true);
             }
         });
     }

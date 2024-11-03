@@ -6,7 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminRoleWindow extends javax.swing.JFrame {
-
+    
+    protected AdminRole adminRole;
     public AdminRoleWindow() {
         initComponents();
         setContentPane(jPanel1);
@@ -14,7 +15,9 @@ public class AdminRoleWindow extends javax.swing.JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
-       AdminRole adminRole = new AdminRole();
+        adminRole = new AdminRole();
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -102,25 +105,31 @@ public class AdminRoleWindow extends javax.swing.JFrame {
 
     private void removeTrainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTrainerActionPerformed
         // TODO add your handling code here:
-        RemoveTrainerWindow removedTrainer = new RemoveTrainerWindow();
         setVisible(false);
+        new RemoveTrainerWindow(this);
+        dispose();
     }//GEN-LAST:event_removeTrainerActionPerformed
 
     private void addTrainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTrainerActionPerformed
         // TODO add your handling code here:
-        AddTrainerWindow newTrainer = new AddTrainerWindow();
         setVisible(false);
+        new AddTrainerWindow(this);
+        dispose();
     }//GEN-LAST:event_addTrainerActionPerformed
 
     private void viewTrainersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTrainersActionPerformed
         // TODO add your handling code here:
-        ViewTrainersWindow trainersList = new ViewTrainersWindow();
         setVisible(false);
+        new ViewTrainersWindow(this);
+        dispose();
+        
     }//GEN-LAST:event_viewTrainersActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         try {
             AdminRole.logout();
+            setVisible(false);
+            System.exit(0);
             } 
         catch (IOException ex) {
             Logger.getLogger(AdminRoleWindow.class.getName()).log(Level.SEVERE, null, ex);

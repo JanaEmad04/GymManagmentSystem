@@ -1,19 +1,29 @@
 package Frontend;
 
 import Backend.AdminRole;  
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 public class AddTrainerWindow extends javax.swing.JFrame {
 
-    public AddTrainerWindow() {
+    private final AdminRoleWindow adminRoleWindow; //Store Reference to AdminRoleWindow
+    public AddTrainerWindow(AdminRoleWindow adminRoleWindow) {
         
+        this.adminRoleWindow=adminRoleWindow;
         initComponents();
         setContentPane(jPanel1);
         setTitle("Add Trainer");
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE); //M4 hatfr2 hena but other cases it may differ
         setResizable(false);
-  
+    
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                adminRoleWindow.setVisible(true);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -176,21 +186,26 @@ public class AddTrainerWindow extends javax.swing.JFrame {
 
     private void addTrainerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTrainerButtonActionPerformed
         // TODO add your handling code here:
-        AdminRole adminRole = new AdminRole();
         
+      
       String trainerId = newTrainerIdText.getText();
       String trainerName = newTrainerNameText.getText();
       String trainerEmail = newTrainerEmailText.getText();
       String trainerSpeciality = newTrainerSpecialityText.getText();
       String trainerphone = newTrainerPhoneText.getText();
-      
+     
       
       if(trainerId.isEmpty()||trainerName.isEmpty()||trainerEmail.isEmpty()||trainerSpeciality.isEmpty()||trainerphone.isEmpty())
           JOptionPane.showMessageDialog(null, "Some fields are Empty!","Message",JOptionPane.INFORMATION_MESSAGE);
       else if(!AdminRole.dataBase.contains(trainerId))
       {
-      adminRole.addTrainer(trainerId, trainerName, trainerEmail, trainerSpeciality, trainerphone); 
-      JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" added successfully!","Message",JOptionPane.PLAIN_MESSAGE);
+      adminRoleWindow.adminRole.addTrainer(trainerId, trainerName, trainerEmail, trainerSpeciality, trainerphone);
+      JOptionPane.showMessageDialog(this, 
+            "Trainer with ID= "+trainerId+" added successfully!", 
+            "Success", 
+            JOptionPane.PLAIN_MESSAGE);
+          adminRoleWindow.setVisible(true);
+          dispose();
       }
       else JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_addTrainerButtonActionPerformed
@@ -222,7 +237,7 @@ public class AddTrainerWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddTrainerWindow().setVisible(true);
+                //new AddTrainerWindow().setVisible(true);
             }
         });
     }

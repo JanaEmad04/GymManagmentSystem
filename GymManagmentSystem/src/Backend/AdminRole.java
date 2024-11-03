@@ -8,7 +8,7 @@ public class AdminRole {
     public static TrainerDatabase dataBase = new TrainerDatabase("Trainers");
 
     public AdminRole() {
-
+        dataBase.readFromFile();
     }
 
     public void addTrainer(String trainerId, String name, String email, String speciality, String phoneNumber) {
