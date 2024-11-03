@@ -1,11 +1,13 @@
 package Backend;
 
+import Constants.FileNames;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AdminRole {
 
-    public static TrainerDatabase dataBase = new TrainerDatabase("Trainers");
+public class AdminRole implements FileNames {
+
+    public static TrainerDatabase dataBase = new TrainerDatabase(FileNames.TRAINER_FILENAME);
 
     public AdminRole() {
         dataBase.readFromFile();

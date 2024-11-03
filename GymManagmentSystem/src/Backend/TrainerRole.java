@@ -1,14 +1,15 @@
 package Backend;
 
+import Constants.FileNames;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
 
-public class TrainerRole {
+public class TrainerRole implements FileNames{
 
-    public MemberDatabase memberDatabase = new MemberDatabase("Member");
-    public ClassDatabase classDatabase = new ClassDatabase("Class");
-    public MemberClassRegistrationDatabase registrationDatabase = new MemberClassRegistrationDatabase("Registration");
+    public MemberDatabase memberDatabase = new MemberDatabase(FileNames.MEMBER_FILENAME);
+    public ClassDatabase classDatabase = new ClassDatabase(FileNames.CLASS_FILENAME);
+    public MemberClassRegistrationDatabase registrationDatabase = new MemberClassRegistrationDatabase(FileNames.REGISTRATION_FILENAME);
     // public static final String STATUS = "active";
 
     public TrainerRole() {
@@ -57,7 +58,7 @@ public class TrainerRole {
     public ArrayList<Class> getListOfClasses() {
         return classDatabase.returnAllRecords();
     }
-
+    
     public boolean registerMemberForClass(String memberID, String classID, LocalDate registrationDate) {
         if (memberDatabase.contains(memberID) && classDatabase.contains(classID)) {
             Class classToRegister = classDatabase.getRecord(classID);
@@ -83,13 +84,15 @@ public class TrainerRole {
                 Class classToRegister = classDatabase.getRecord(classID);
                 LocalDate curDate = LocalDate.now();
                 LocalDate regDate = temp.getRegistrationDate();
-                int differenceDays = (int) ChronoUnit.DAYS.between(regDate, curDate);
+                int differenceDays = (int) ChronoUnit.DAYS.between(curDate, regDate);
                 if (differenceDays <= 3) {
                     classToRegister.setAvailableSeats(classToRegister.getAvailableSeats() + 1);
                     temp.setRegistrationStatus("cancelled");
                     registrationDatabase.deleteRecord(memberID + "," + classID);
                     return true;
                 }
+                else
+                    return false;
             }
         }
         return false;

@@ -1,20 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Frontend;
 
 import Backend.TrainerRole;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.time.LocalDate;
-import javax.swing.JComboBox;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class RegisterMemberForClass extends javax.swing.JFrame {
 
     private final TrainerRoleWindow trainerRoleWindow;
-    
+    private String selectedDateString;
     public RegisterMemberForClass(TrainerRoleWindow trainerRoleWindow) {
         this.trainerRoleWindow = trainerRoleWindow;
         initComponents();
@@ -23,8 +20,20 @@ public class RegisterMemberForClass extends javax.swing.JFrame {
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
-        
-        
+
+        LocalDate today = LocalDate.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // Add today's date
+        registrationDateComboBox.addItem("Today's Date: " + today.format(formatter));
+
+        // Add a range of dates (e.g., for the next 7 days)
+        for (int i = 1; i <= 7; i++) {
+            LocalDate date = today.plusDays(i);
+            registrationDateComboBox.addItem(date.format(formatter));
+        }
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -33,7 +42,6 @@ public class RegisterMemberForClass extends javax.swing.JFrame {
         });
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,7 +79,7 @@ public class RegisterMemberForClass extends javax.swing.JFrame {
             }
         });
 
-        registrationDateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        LocalDate today=LocalDate.now();
         registrationDateComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrationDateComboBoxActionPerformed(evt);
@@ -133,33 +141,47 @@ public class RegisterMemberForClass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean validateRegistration(String memberId, String classId) {
+
+        if (!trainerRoleWindow.trainerRole.memberDatabase.contains(memberId)) //Validates if Member with ID entered Exists!
+        {
+            JOptionPane.showMessageDialog(null, "The member with Id = " + memberId + " does not exist!", "Message", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+
+        if (!trainerRoleWindow.trainerRole.classDatabase.contains(classId)) //Validates if Class with ID entered Exists!
+        {
+            JOptionPane.showMessageDialog(null, "The class with Id = " + classId + " does not exist!", "Message", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if (trainerRoleWindow.trainerRole.classDatabase.getRecord(classId).getAvailableSeats() <= 0) //Validates if there is avaliable Seats
+        {
+            JOptionPane.showMessageDialog(null, "No Avaliable Seats!", "Message", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if(trainerRoleWindow.trainerRole.registrationDatabase.contains(memberId+","+classId))
+        {
+          JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" already Registered !", "Message", JOptionPane.INFORMATION_MESSAGE);  
+          return false;
+        }
+        return true;
+    }
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
-       TrainerRole trainerRole = new TrainerRole();
-       
-       String memberId = registrationMemberIdText.getText();
-       String classId = registrationClassIdText.getText();
-       String comboBox = (String) registrationDateComboBox.getSelectedItem();
-       
-       if(trainerRoleWindow.trainerRole.memberDatabase.contains(memberId))
-       {
-           if(trainerRoleWindow.trainerRole.classDatabase.contains(classId))
-           {
-               if(trainerRoleWindow.trainerRole.registerMemberForClass(memberId, classId, LocalDate.MIN))
-               {JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" registered to class successfully!","Success",JOptionPane.PLAIN_MESSAGE);
-               
-               }
-               else
-               {
-                JOptionPane.showMessageDialog(null, "No Avaliable Seats!","Message",JOptionPane.INFORMATION_MESSAGE);  
-                
-               }
-                trainerRoleWindow.setVisible(true);
-                dispose();
-           }
-           else JOptionPane.showMessageDialog(null, "The class with Id = "+classId+" does not exist!","Message",JOptionPane.INFORMATION_MESSAGE);
-       }
-       else JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" does not exist!","Message",JOptionPane.INFORMATION_MESSAGE);
+        TrainerRole trainerRole = new TrainerRole();
+
+        String memberId = registrationMemberIdText.getText();
+        String classId = registrationClassIdText.getText();
+        selectedDateString = (String) registrationDateComboBox.getSelectedItem();
+        // Define the date format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(selectedDateString, formatter);
+        if (validateRegistration(memberId, classId)) {
+            trainerRoleWindow.trainerRole.registerMemberForClass(memberId, classId, localDate);
+            JOptionPane.showMessageDialog(null, "The member with Id = " + memberId + " registered to Class " + classId + " successfully!", "Success", JOptionPane.PLAIN_MESSAGE);
+        }
+        trainerRoleWindow.setVisible(true);
+        dispose();
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void registrationMemberIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrationMemberIdTextActionPerformed
@@ -168,6 +190,9 @@ public class RegisterMemberForClass extends javax.swing.JFrame {
 
     private void registrationDateComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrationDateComboBoxActionPerformed
         // TODO add your handling code here:
+        selectedDateString = (String) registrationDateComboBox.getSelectedItem();
+        JOptionPane.showMessageDialog(null, "Selected Date: " + selectedDateString, "Message", JOptionPane.PLAIN_MESSAGE);
+
     }//GEN-LAST:event_registrationDateComboBoxActionPerformed
 
     /**
@@ -200,7 +225,7 @@ public class RegisterMemberForClass extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }

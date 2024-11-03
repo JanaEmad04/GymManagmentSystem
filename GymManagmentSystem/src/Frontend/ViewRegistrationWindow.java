@@ -15,7 +15,7 @@ public class ViewRegistrationWindow extends javax.swing.JFrame {
     public ViewRegistrationWindow(TrainerRoleWindow trainerRoleWindow) {
         this.trainerRoleWindow = trainerRoleWindow;
         initComponents();
-        setTitle("View Class");
+        setTitle("View Registration");
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -77,12 +77,11 @@ public class ViewRegistrationWindow extends javax.swing.JFrame {
         for (MemberClassRegistration m : l) {
             line = m.lineRepresentation();
             String[] separatedStr = line.split(",");
-            if (separatedStr.length == 5) {
+            if (separatedStr.length == 4) {
                 String memberId = separatedStr[0];
                 String classId = separatedStr[1];
-                String status = separatedStr[2];
                 LocalDate registrationDate = LocalDate.parse(separatedStr[3]);
-                model.addRow(new Object[]{memberId, classId, status, registrationDate});
+                model.addRow(new Object[]{memberId, classId,registrationDate});
             }
         }
     }

@@ -174,11 +174,11 @@ public class AddMemberWindow extends javax.swing.JFrame {
           {
               trainerRoleWindow.trainerRole.addMember(memberId, memberName, membershipType, memberEmail, memberPhone, memberStatus);
               JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" added successfully!","Message",JOptionPane.PLAIN_MESSAGE);
-              trainerRoleWindow.setVisible(true);
-              dispose();
           }
-          else  JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
       }
+      else  JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
+      trainerRoleWindow.setVisible(true);
+      dispose();
       
     }//GEN-LAST:event_addTrainerButtonActionPerformed
 
