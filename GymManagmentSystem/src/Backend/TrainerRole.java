@@ -6,9 +6,9 @@ import java.time.temporal.ChronoUnit;
 
 public class TrainerRole {
 
-    private MemberDatabase memberDatabase = new MemberDatabase("Member");
-    private ClassDatabase classDatabase = new ClassDatabase("Class");
-    private MemberClassRegistrationDatabase registrationDatabase = new MemberClassRegistrationDatabase("Registration");
+    public MemberDatabase memberDatabase = new MemberDatabase("Member");
+    public ClassDatabase classDatabase = new ClassDatabase("Class");
+    public MemberClassRegistrationDatabase registrationDatabase = new MemberClassRegistrationDatabase("Registration");
     // public static final String STATUS = "active";
 
     public TrainerRole() {

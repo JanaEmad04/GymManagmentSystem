@@ -11,7 +11,7 @@ public class AddTrainerWindow extends javax.swing.JFrame {
         setContentPane(jPanel1);
         setTitle("Add Trainer");
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
   
     }
@@ -187,14 +187,82 @@ public class AddTrainerWindow extends javax.swing.JFrame {
       
       if(trainerId.isEmpty()||trainerName.isEmpty()||trainerEmail.isEmpty()||trainerSpeciality.isEmpty()||trainerphone.isEmpty())
           JOptionPane.showMessageDialog(null, "Some fields are Empty!","Message",JOptionPane.INFORMATION_MESSAGE);
-      else if(!AdminRole.dataBase.contains(trainerId))
+      else if(validateName(trainerName)&&validateEmail(trainerEmail)&&validateSpeciality(trainerSpeciality)&&validatePhone(trainerphone))
       {
-      adminRole.addTrainer(trainerId, trainerName, trainerEmail, trainerSpeciality, trainerphone); 
-      JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" added successfully!","Message",JOptionPane.PLAIN_MESSAGE);
+          if(!AdminRole.dataBase.contains(trainerId))
+          {
+              adminRole.addTrainer(trainerId, trainerName, trainerEmail, trainerSpeciality, trainerphone); 
+              JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" added successfully!","Message",JOptionPane.PLAIN_MESSAGE);
+          }
+          else JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
       }
-      else JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_addTrainerButtonActionPerformed
-
+    
+    private boolean validateName(String name)
+    {
+        boolean  flag = true;
+       
+        for(int i=0; i<name.length(); i++)
+        {
+          
+         if(Character.isDigit(name.charAt(i)))
+         {
+             flag = false;
+         }
+         }
+        if(!flag) JOptionPane.showMessageDialog(null, "Invalid Name!","Message",JOptionPane.INFORMATION_MESSAGE);
+  return flag;
+    }
+     private boolean validateSpeciality(String speciality)
+    {
+        boolean  flag = true;
+       
+        for(int i=0; i<speciality.length(); i++)
+        {
+         if(Character.isDigit(speciality.charAt(i)))
+         {
+             flag = false;
+         }
+         }
+        if(!flag) JOptionPane.showMessageDialog(null, "Invalid Speciality!","Message",JOptionPane.INFORMATION_MESSAGE);
+  return flag;
+    }
+     
+    private boolean validateEmail(String email)
+    {
+        boolean flagAt = false, flagCom = false;
+        
+        String Com = "";
+        for(int j=email.length()-4; j<email.length(); j++)
+            Com = Com + email.charAt(j);
+        if(Com.equals(".com")) flagCom = true;
+        for(int i=0; i<email.length(); i++)
+        {
+         char c = email.charAt(i);  
+         if(c=='@')
+            flagAt = true;
+        }
+        if(flagAt&&flagCom) return true;
+        else JOptionPane.showMessageDialog(null, "Invalid Email!","Message",JOptionPane.INFORMATION_MESSAGE);
+       return false;
+    }
+    
+    private boolean validatePhone(String phone)
+    {
+        boolean flagDigit = true;
+        int num = 0;
+        for(int i=0; i<phone.length(); i++)
+        {
+            if(!Character.isDigit(phone.charAt(i)))
+                flagDigit = false;
+            num++;
+        }
+        if(flagDigit&&num==11) return true;
+        else 
+            JOptionPane.showMessageDialog(null, "Invalid Phone number!","Message",JOptionPane.INFORMATION_MESSAGE);
+        return false;    
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

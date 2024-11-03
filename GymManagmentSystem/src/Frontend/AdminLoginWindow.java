@@ -1,9 +1,10 @@
 package Frontend;
 
 import javax.swing.JOptionPane;
+import Constants.LoginCredentials;
 
 public class AdminLoginWindow extends javax.swing.JFrame {
-
+    public AdminRoleWindow adminRoleWindow;
     public AdminLoginWindow() {
         initComponents();
         setContentPane(jPanel1);
@@ -105,9 +106,9 @@ public class AdminLoginWindow extends javax.swing.JFrame {
         String username = adminUsernameText.getText();
         String password = adminPasswordText.getText();
         
-        if(username.equals("username")&&password.equals("password"))
+        if(username.equals(LoginCredentials.ADMIN_USERNAME)&&password.equals(LoginCredentials.ADMIN_PASSWORD))
         {
-            AdminRoleWindow adminRole = new AdminRoleWindow();
+            adminRoleWindow = new AdminRoleWindow();
             setVisible(false);
         }
         

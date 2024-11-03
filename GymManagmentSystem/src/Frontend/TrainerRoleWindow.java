@@ -1,8 +1,12 @@
 package Frontend;
 
+import Backend.TrainerRole;
+
 public class TrainerRoleWindow extends javax.swing.JFrame {
 
-    public TrainerRoleWindow() {
+    protected TrainerRole trainerRole;
+    protected AdminRoleWindow adminRoleWindow
+    public TrainerRoleWindow(AdminRoleWindow adminRoleWindow) {
         
         initComponents();
         setContentPane(jPanel1);
@@ -10,6 +14,7 @@ public class TrainerRoleWindow extends javax.swing.JFrame {
         setTitle("Trainer Role");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
+        trainerRole = new TrainerRole();
     }
 
     @SuppressWarnings("unchecked")
@@ -38,16 +43,46 @@ public class TrainerRoleWindow extends javax.swing.JFrame {
         });
 
         viewMembersButton.setText("View Members");
+        viewMembersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewMembersButtonActionPerformed(evt);
+            }
+        });
 
         addClassButton.setText("Add Class");
+        addClassButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addClassButtonActionPerformed(evt);
+            }
+        });
 
         viewClassesButton.setText("View Classes");
+        viewClassesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewClassesButtonActionPerformed(evt);
+            }
+        });
 
         registerMemberForClassButton.setText("Register Member For Class");
+        registerMemberForClassButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerMemberForClassButtonActionPerformed(evt);
+            }
+        });
 
         cancelRegistrationButton.setText("Cancel Registration");
+        cancelRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelRegistrationButtonActionPerformed(evt);
+            }
+        });
 
         viewRegistrationsButton.setText("View Registrations");
+        viewRegistrationsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewRegistrationsButtonActionPerformed(evt);
+            }
+        });
 
         logoutButton.setText("Logout");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -113,11 +148,57 @@ public class TrainerRoleWindow extends javax.swing.JFrame {
 
     private void addMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
         // TODO add your handling code here:
+         setVisible(false);
+      new AddMemberWindow(this);
+      dispose();
+       
     }//GEN-LAST:event_addMemberButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void viewMembersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMembersButtonActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new ViewMemberWindow(this);
+        dispose();
+    }//GEN-LAST:event_viewMembersButtonActionPerformed
+
+    private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new AddClassWindow(this);
+        dispose();
+    }//GEN-LAST:event_addClassButtonActionPerformed
+
+    private void registerMemberForClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerMemberForClassButtonActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new RegisterMemberForClass(this);
+         dispose();
+    }//GEN-LAST:event_registerMemberForClassButtonActionPerformed
+
+    private void viewClassesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClassesButtonActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new ViewClassWindow(this);
+        dispose();
+    }//GEN-LAST:event_viewClassesButtonActionPerformed
+
+    private void cancelRegistrationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRegistrationButtonActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new CancelRegistrationWindow(this);
+        dispose();
+    }//GEN-LAST:event_cancelRegistrationButtonActionPerformed
+
+    private void viewRegistrationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRegistrationsButtonActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new ViewRegistrationWindow(this);
+        dispose();
+    }//GEN-LAST:event_viewRegistrationsButtonActionPerformed
 
     /**
      * @param args the command line arguments

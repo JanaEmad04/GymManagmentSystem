@@ -11,7 +11,7 @@ public class RemoveTrainerWindow extends javax.swing.JFrame {
         setContentPane(jPanel1);
         setTitle("Remove Trainer");
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         
     }
