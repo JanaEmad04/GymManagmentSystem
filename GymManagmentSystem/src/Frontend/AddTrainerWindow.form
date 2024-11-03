@@ -104,6 +104,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTrainerButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="newTrainerId">
           <Properties>
@@ -136,14 +139,29 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="newTrainerIdText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newTrainerIdTextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="newTrainerNameText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newTrainerNameTextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="newTrainerEmailText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newTrainerEmailTextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="newTrainerSpecialityText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newTrainerSpecialityTextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="newTrainerPhoneText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newTrainerPhoneTextActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -75,7 +75,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void adminRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminRoleActionPerformed
         // TODO add your handling code here:
-        AdminLoginWindow adminLogin=new AdminLoginWindow();
+        AdminLoginWindow adminLogin = new AdminLoginWindow();
         setVisible(false);
     }//GEN-LAST:event_adminRoleActionPerformed
 

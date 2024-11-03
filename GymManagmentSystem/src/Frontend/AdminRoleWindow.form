@@ -76,6 +76,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Add Trainer"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTrainerActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="removeTrainer">
           <Properties>
@@ -89,11 +92,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="View Trainers"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewTrainersActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="logout">
           <Properties>
             <Property name="text" type="java.lang.String" value="Logout"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

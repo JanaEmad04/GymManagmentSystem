@@ -48,18 +48,18 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="119" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="trainerUsername" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="trainerPassword" min="-2" pref="119" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextField2" min="-2" pref="144" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="trainerPasswordText" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="trainerUsernameText" min="-2" pref="144" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="tarinerLoginButton" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="51" max="32767" attributes="0"/>
@@ -71,17 +71,17 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="trainerUsername" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="trainerUsernameText" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" max="32767" attributes="0"/>
+                      <Component id="trainerPasswordText" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="trainerPassword" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="45" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="tarinerLoginButton" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,23 +93,26 @@
             <Property name="text" type="java.lang.String" value="Username"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="TrainerPassword">
+        <Component class="javax.swing.JLabel" name="trainerPassword">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="trainerLoginButton">
+        <Component class="javax.swing.JButton" name="tarinerLoginButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tarinerLoginButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="trainerUsernameText">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="trainerUsernameTextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="trainerPasswordText">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="trainerPasswordTextActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
