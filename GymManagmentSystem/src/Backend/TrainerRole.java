@@ -87,6 +87,7 @@ public class TrainerRole {
                 if (differenceDays <= 3) {
                     classToRegister.setAvailableSeats(classToRegister.getAvailableSeats() + 1);
                     temp.setRegistrationStatus("cancelled");
+                    registrationDatabase.deleteRecord(memberID + "," + classID);
                     return true;
                 }
             }

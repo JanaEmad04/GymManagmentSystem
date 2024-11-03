@@ -5,7 +5,7 @@ import Constants.LoginCredentials;
 
 public class TrainerLoginWindow extends javax.swing.JFrame {
 
-    public TrainerLoginWindow(AdminRoleWindow adminRoleWindow) {
+    public TrainerLoginWindow() {
         initComponents();
         setContentPane(jPanel1);
         setVisible(true);
@@ -74,10 +74,10 @@ public class TrainerLoginWindow extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(trainerUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(trainerUsernameText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(trainerUsernameText, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(trainerPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trainerPasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(trainerPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addComponent(tarinerLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,7 +109,7 @@ public class TrainerLoginWindow extends javax.swing.JFrame {
         
         if(username.equals(LoginCredentials.TRAINER_USERNAME)&&password.equals(LoginCredentials.TRAINER_PASSWORD))
         {
-            TrainerRoleWindow trainerRole = new TrainerRoleWindow(adminRoleWindow);
+            TrainerRoleWindow trainerRole = new TrainerRoleWindow();
             setVisible(false);
         }
         else showMessage(); 

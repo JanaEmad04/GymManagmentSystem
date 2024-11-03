@@ -1,5 +1,7 @@
 package Frontend;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 public class AddMemberWindow extends javax.swing.JFrame {
@@ -10,10 +12,19 @@ public class AddMemberWindow extends javax.swing.JFrame {
         this.trainerRoleWindow = trainerRoleWindow;
         initComponents();
         setContentPane(jPanel1);
+        setSize(359,400);
         setTitle("Add Member");
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
+        
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                trainerRoleWindow.setVisible(true);
+            }
+        });
         
     }
 
@@ -21,7 +32,6 @@ public class AddMemberWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        newTrainerEmailText = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         addTrainerButton = new javax.swing.JButton();
         newMemberId = new javax.swing.JLabel();
@@ -36,12 +46,6 @@ public class AddMemberWindow extends javax.swing.JFrame {
         newMemberMembershipType = new javax.swing.JLabel();
         newMemberPhoneText = new javax.swing.JTextField();
         newMemberStatusText = new javax.swing.JTextField();
-
-        newTrainerEmailText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newTrainerEmailTextActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(320, 400));
@@ -75,14 +79,14 @@ public class AddMemberWindow extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(newMemberId, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(newMemberIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(47, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +113,7 @@ public class AddMemberWindow extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newMemberIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newMemberId, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,7 +137,7 @@ public class AddMemberWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newMemberStatusText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newMemberStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(addTrainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -151,10 +155,6 @@ public class AddMemberWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void newTrainerEmailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTrainerEmailTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newTrainerEmailTextActionPerformed
 
     private void addTrainerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTrainerButtonActionPerformed
         // TODO add your handling code here:
@@ -177,8 +177,9 @@ public class AddMemberWindow extends javax.swing.JFrame {
               trainerRoleWindow.setVisible(true);
               dispose();
           }
+          else  JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
       }
-      else  JOptionPane.showMessageDialog(null, "The member with Id = "+memberId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
+      
     }//GEN-LAST:event_addTrainerButtonActionPerformed
 
     private boolean validateName(String name)
@@ -289,7 +290,7 @@ public class AddMemberWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+              
             }
         });
     }
@@ -309,6 +310,5 @@ public class AddMemberWindow extends javax.swing.JFrame {
     private javax.swing.JLabel newMemberStatus;
     private javax.swing.JTextField newMemberStatusText;
     private javax.swing.JTextField newMemebrMembershipTypeText;
-    private javax.swing.JTextField newTrainerEmailText;
     // End of variables declaration//GEN-END:variables
 }

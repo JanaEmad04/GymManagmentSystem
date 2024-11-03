@@ -115,7 +115,7 @@ public abstract class Database<ReturnType extends MainInterface> {
    
     public void saveToFile() {
         try {
-            FileWriter w = new FileWriter(fileName,true);
+            FileWriter w = new FileWriter(fileName);
 
             for (int i = 0; i < records.size(); i++) {
                 w.write(records.get(i).lineRepresentation() + "\n");

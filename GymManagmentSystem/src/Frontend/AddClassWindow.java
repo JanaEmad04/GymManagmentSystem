@@ -1,19 +1,30 @@
 package Frontend;
 
-import Backend.TrainerRole;
 import Backend.AdminRole;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 public class AddClassWindow extends javax.swing.JFrame {
 
-    public AddClassWindow() {
-        
+    protected TrainerRoleWindow trainerRoleWindow;
+
+    public AddClassWindow(TrainerRoleWindow trainerRoleWindow) {
+
+        this.trainerRoleWindow = trainerRoleWindow;
         initComponents();
         setContentPane(jPanel1);
         setTitle("Add Class");
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                trainerRoleWindow.setVisible(true);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -140,72 +151,74 @@ public class AddClassWindow extends javax.swing.JFrame {
 
     private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
         // TODO add your handling code here:
-        TrainerRole trainerRole = new TrainerRole();
-        AdminRole adminRole = new AdminRole();
         
-      String classId = newClassIdText.getText();
-      String className = newClassNameText.getText();
-      String trainerId = newClassTrainerIdText.getText();
-      String duration = newClassDurationText.getText();
-      String MaxParticipants = newClassMaxParticipantsText.getText();
-      
-      if(classId.isEmpty()||className.isEmpty()||trainerId.isEmpty()||duration.isEmpty()||MaxParticipants.isEmpty())
-           JOptionPane.showMessageDialog(null, "Some fields are Empty!","Message",JOptionPane.INFORMATION_MESSAGE);
-      else if(adminRole.dataBase.contains(trainerId))
-      {
-          if(validateClassName(className)&&validateDuration(duration)&&validateMaxParticipants(MaxParticipants))
-          {
-              if(!trainerRole.classDatabase.contains(classId))
-              {
-                  trainerRole.addClass(classId, className, trainerId, Integer.parseInt(duration), Integer.parseInt(MaxParticipants));
-                  JOptionPane.showMessageDialog(null, "The Class with Id = "+classId+" added successfully!","Message",JOptionPane.PLAIN_MESSAGE);
-                  //trainerRoleWindow.setVisible(true);
-                  dispose();
-              }
+        AdminRole admin=new AdminRole();
+        String classId = newClassIdText.getText();
+        String className = newClassNameText.getText();
+        String trainerId = newClassTrainerIdText.getText();
+        String duration = newClassDurationText.getText();
+        String MaxParticipants = newClassMaxParticipantsText.getText();
 
-              else JOptionPane.showMessageDialog(null, "The class with Id = "+classId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
-          }
-      }
-      else JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" does not exist!","Message",JOptionPane.INFORMATION_MESSAGE);
-          
+        if (classId.isEmpty() || className.isEmpty() || trainerId.isEmpty() || duration.isEmpty() || MaxParticipants.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Some fields are Empty!", "Message", JOptionPane.INFORMATION_MESSAGE);
+        } else if (admin.dataBase.contains(trainerId)) {
+            if (validateClassName(className) && validateDuration(duration) && validateMaxParticipants(MaxParticipants)) {
+                if (!trainerRoleWindow.trainerRole.classDatabase.contains(classId)) {
+                    trainerRoleWindow.trainerRole.addClass(classId, className, trainerId, Integer.parseInt(duration), Integer.parseInt(MaxParticipants));
+                    JOptionPane.showMessageDialog(null, "The Class with Id = " + classId + " added successfully!", "Message", JOptionPane.PLAIN_MESSAGE);
+                    trainerRoleWindow.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "The class with Id = " + classId + " already exists!", "Message", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "The trainer with Id = " + trainerId + " does not exist!", "Message", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }//GEN-LAST:event_addClassButtonActionPerformed
 
-   private boolean validateClassName(String name)
-    {
-        boolean  flag = true;
-       
-        for(int i=0; i<name.length(); i++)
-        {
-          
-         if(Character.isDigit(name.charAt(i)))
-         {
-             flag = false;
-         }
-         }
-        if(!flag) JOptionPane.showMessageDialog(null, "Invalid Class Name!","Message",JOptionPane.INFORMATION_MESSAGE);
-  return flag;
+    private boolean validateClassName(String name) {
+        boolean flag = true;
+
+        for (int i = 0; i < name.length(); i++) {
+
+            if (Character.isDigit(name.charAt(i))) {
+                flag = false;
+            }
+        }
+        if (!flag) {
+            JOptionPane.showMessageDialog(null, "Invalid Class Name!", "Message", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return flag;
     }
-   
-   private boolean validateDuration(String duration)
-   {
-       boolean flag = true;
-       for(int i=0; i<duration.length(); i++)
-           if(!Character.isDigit(duration.charAt(i)))
-               flag = false;
-       if(!flag) JOptionPane.showMessageDialog(null, "Invalid Duration!","Message",JOptionPane.INFORMATION_MESSAGE);
-       return flag;
-   }
-   
-   private boolean validateMaxParticipants(String max)
-   {
-     boolean flag = true;
-       for(int i=0; i<max.length(); i++)
-           if(!Character.isDigit(max.charAt(i)))
-               flag = false;
-       if(!flag) JOptionPane.showMessageDialog(null, "Invalid Maximum Number of Participants!","Message",JOptionPane.INFORMATION_MESSAGE);
-       return flag;  
-   }
-   
+
+    private boolean validateDuration(String duration) {
+        boolean flag = true;
+        for (int i = 0; i < duration.length(); i++) {
+            if (!Character.isDigit(duration.charAt(i))) {
+                flag = false;
+            }
+        }
+        if (!flag) {
+            JOptionPane.showMessageDialog(null, "Invalid Duration!", "Message", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return flag;
+    }
+
+    private boolean validateMaxParticipants(String max) {
+        boolean flag = true;
+        for (int i = 0; i < max.length(); i++) {
+            if (!Character.isDigit(max.charAt(i))) {
+                flag = false;
+            }
+        }
+        if (!flag) {
+            JOptionPane.showMessageDialog(null, "Invalid Maximum Number of Participants!", "Message", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return flag;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -233,7 +246,6 @@ public class AddClassWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddClassWindow().setVisible(true);
             }
         });
     }

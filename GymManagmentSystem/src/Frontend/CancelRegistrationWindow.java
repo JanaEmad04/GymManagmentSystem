@@ -1,16 +1,28 @@
 package Frontend;
 import Backend.TrainerRole;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 public class CancelRegistrationWindow extends javax.swing.JFrame {
 
-    public CancelRegistrationWindow() {
+    private final TrainerRoleWindow trainerRoleWindow;
+    
+    public CancelRegistrationWindow(TrainerRoleWindow trainerRoleWindow) {
+        this.trainerRoleWindow = trainerRoleWindow;
         initComponents();
         setContentPane(jPanel1);
         setTitle("Cancel Registration");
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
+        
+           addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                trainerRoleWindow.setVisible(true);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -93,17 +105,25 @@ public class CancelRegistrationWindow extends javax.swing.JFrame {
 
     private void cancelRegistrationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRegistrationButtonActionPerformed
         // TODO add your handling code here:
-       TrainerRole trainerRole = new TrainerRole();
+       
        
        String memberId = CancelRegistrationMemberIdText.getText();
        String classId = CancelRegistrationClassIdText.getText();
        
-       if(trainerRole.memberDatabase.contains(memberId))
+       if(trainerRoleWindow.trainerRole.memberDatabase.contains(memberId))
        {
-           if(trainerRole.classDatabase.contains(classId))
+           if(trainerRoleWindow.trainerRole.classDatabase.contains(classId))
            {
-               trainerRole.cancelRegistration(memberId, classId);
-               JOptionPane.showMessageDialog(null, "The Registration of member with Id = "+memberId+" cancelled successfully!","Message",JOptionPane.PLAIN_MESSAGE);
+               if(trainerRoleWindow.trainerRole.cancelRegistration(memberId, classId))
+               {
+               JOptionPane.showMessageDialog(null, "The Registration of member with Id = "+memberId+" cancelled successfully!","Success",JOptionPane.PLAIN_MESSAGE);
+               }
+               else
+               {
+                JOptionPane.showMessageDialog(null, "Can't Cancel After 3 days of Registration","Message",JOptionPane.INFORMATION_MESSAGE);   
+               }
+               trainerRoleWindow.setVisible(true);
+               dispose();
            }
            else JOptionPane.showMessageDialog(null, "The class with Id = "+classId+" does not exist!","Message",JOptionPane.INFORMATION_MESSAGE);
        }
@@ -138,7 +158,6 @@ public class CancelRegistrationWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CancelRegistrationWindow().setVisible(true);
             }
         });
     }

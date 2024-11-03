@@ -5,11 +5,11 @@ import Backend.TrainerRole;
 public class TrainerRoleWindow extends javax.swing.JFrame {
 
     protected TrainerRole trainerRole;
-    protected AdminRoleWindow adminRoleWindow
-    public TrainerRoleWindow(AdminRoleWindow adminRoleWindow) {
+    public TrainerRoleWindow() {
         
         initComponents();
         setContentPane(jPanel1);
+        setSize(400,500);
         setVisible(true);
         setTitle("Trainer Role");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -155,7 +155,8 @@ public class TrainerRoleWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addMemberButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+        trainerRole.logout();
+        System.exit(0);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void viewMembersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMembersButtonActionPerformed
@@ -230,7 +231,6 @@ public class TrainerRoleWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TrainerRoleWindow().setVisible(true);
             }
         });
     }

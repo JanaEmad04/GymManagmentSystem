@@ -15,11 +15,7 @@ public class AddTrainerWindow extends javax.swing.JFrame {
         setContentPane(jPanel1);
         setTitle("Add Trainer");
         setVisible(true);
-<<<<<<< HEAD
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-=======
         setDefaultCloseOperation(DISPOSE_ON_CLOSE); //M4 hatfr2 hena but other cases it may differ
->>>>>>> cb2ba121e33048059c8a6cf3d587a1c2714835d1
         setResizable(false);
     
         addWindowListener(new WindowAdapter() {
@@ -203,14 +199,8 @@ public class AddTrainerWindow extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null, "Some fields are Empty!","Message",JOptionPane.INFORMATION_MESSAGE);
       else if(validateName(trainerName)&&validateEmail(trainerEmail)&&validateSpeciality(trainerSpeciality)&&validatePhone(trainerphone))
       {
-<<<<<<< HEAD
-          if(!AdminRole.dataBase.contains(trainerId))
+          if(!adminRoleWindow.adminRole.dataBase.contains(trainerId))
           {
-              adminRole.addTrainer(trainerId, trainerName, trainerEmail, trainerSpeciality, trainerphone); 
-              JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" added successfully!","Message",JOptionPane.PLAIN_MESSAGE);
-          }
-          else JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
-=======
       adminRoleWindow.adminRole.addTrainer(trainerId, trainerName, trainerEmail, trainerSpeciality, trainerphone);
       JOptionPane.showMessageDialog(this, 
             "Trainer with ID= "+trainerId+" added successfully!", 
@@ -218,10 +208,11 @@ public class AddTrainerWindow extends javax.swing.JFrame {
             JOptionPane.PLAIN_MESSAGE);
           adminRoleWindow.setVisible(true);
           dispose();
->>>>>>> cb2ba121e33048059c8a6cf3d587a1c2714835d1
+          }
+          else JOptionPane.showMessageDialog(null, "The trainer with Id = "+trainerId+" already exists!","Message",JOptionPane.INFORMATION_MESSAGE);
       }
     }//GEN-LAST:event_addTrainerButtonActionPerformed
-    
+
     private boolean validateName(String name)
     {
         boolean  flag = true;
@@ -286,7 +277,6 @@ public class AddTrainerWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid Phone number!","Message",JOptionPane.INFORMATION_MESSAGE);
         return false;    
     }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

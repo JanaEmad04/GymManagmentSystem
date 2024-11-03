@@ -15,12 +15,9 @@ public class AdminRoleWindow extends javax.swing.JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
-<<<<<<< HEAD
-=======
         adminRole = new AdminRole();
         
         
->>>>>>> cb2ba121e33048059c8a6cf3d587a1c2714835d1
     }
 
     @SuppressWarnings("unchecked")

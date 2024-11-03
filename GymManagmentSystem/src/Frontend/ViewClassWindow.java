@@ -4,17 +4,36 @@
  */
 package Frontend;
 
+import Backend.Class;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hp
  */
 public class ViewClassWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ViewClassWindow
-     */
-    public ViewClassWindow() {
+    private final TrainerRoleWindow trainerRoleWindow;
+
+    public ViewClassWindow(TrainerRoleWindow trainerRoleWindow) {
+        this.trainerRoleWindow = trainerRoleWindow;
         initComponents();
+        setContentPane(jPanel1);
+        setTitle("View Class");
+        setVisible(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setResizable(false);
+        viewClassesList();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                trainerRoleWindow.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -31,7 +50,7 @@ public class ViewClassWindow extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        classesTable = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -48,7 +67,7 @@ public class ViewClassWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        classesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -59,7 +78,7 @@ public class ViewClassWindow extends javax.swing.JFrame {
                 "Class Id", "Class Name", "Trainer Id", "Duration", "Max Participants"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(classesTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,9 +118,28 @@ public class ViewClassWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void viewClassesList() {
+        String line = null;
+
+        ArrayList<Class> l = trainerRoleWindow.trainerRole.getListOfClasses();
+        DefaultTableModel model = (DefaultTableModel) classesTable.getModel();
+        model.setRowCount(0);
+
+        for (Class m : l) {
+            line = m.lineRepresentation();
+            String[] separatedStr = line.split(",");
+            if (separatedStr.length == 5) {
+                String Id = separatedStr[0].trim();
+                String name = separatedStr[1].trim();
+                String trainerId = separatedStr[2].trim();
+                int duration = Integer.parseInt(separatedStr[3].trim()); //Converted to int
+                int availableSeats = Integer.parseInt(separatedStr[4].trim()); //Converted to int
+
+                model.addRow(new Object[]{Id, name, trainerId, duration, availableSeats});
+            }
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -129,17 +167,16 @@ public class ViewClassWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewClassWindow().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable classesTable;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
