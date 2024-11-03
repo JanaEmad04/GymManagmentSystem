@@ -1,20 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Frontend;
 
-/**
- *
- * @author hp
- */
+import Backend.AdminRole;
+import Backend.Trainer;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class ViewTrainersWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ViewTrainersWindow
-     */
-    public ViewTrainersWindow() {
+    private final AdminRoleWindow adminRoleWindow; //Store Reference to AdminRoleWindow
+
+    public ViewTrainersWindow(AdminRoleWindow adminRoleWindow) {
         initComponents();
+        this.adminRoleWindow = adminRoleWindow;
+        initComponents();
+        setContentPane(jPanel1);
+        setTitle("View Trainers");
+        setVisible(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setResizable(false);
+        viewTrainersList();
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                adminRoleWindow.setVisible(true);
+            }
+        });
     }
 
     /**
@@ -28,11 +41,11 @@ public class ViewTrainersWindow extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        trainersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        trainersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -43,7 +56,7 @@ public class ViewTrainersWindow extends javax.swing.JFrame {
                 "Id", "Name", "Email", "Speciality", "Phone Number"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(trainersTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,6 +88,30 @@ public class ViewTrainersWindow extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    private void viewTrainersList() {
+        String line = null;
+
+        ArrayList<Trainer> l = adminRoleWindow.adminRole.getListOfTrainers();
+        DefaultTableModel model = (DefaultTableModel) trainersTable.getModel();
+        model.setRowCount(0);
+
+        for (Trainer t : l) {
+            line = t.lineRepresentation();
+            String[] separatedStr = line.split(",");
+            if (separatedStr.length == 5) {
+                String Id = separatedStr[0].trim();
+                String name = separatedStr[1].trim();
+                String email = separatedStr[2].trim();
+                String speciality = separatedStr[3].trim();
+                String phoneNumber = separatedStr[4].trim();
+
+                model.addRow(new Object[]{Id, name, email, speciality, phoneNumber});
+            }
+        }
+    }
+
+    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -102,7 +139,7 @@ public class ViewTrainersWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewTrainersWindow().setVisible(true);
+
             }
         });
     }
@@ -110,6 +147,6 @@ public class ViewTrainersWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable trainersTable;
     // End of variables declaration//GEN-END:variables
 }

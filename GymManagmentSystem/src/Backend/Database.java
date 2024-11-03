@@ -23,8 +23,14 @@ public abstract class Database<ReturnType extends MainInterface> {
         File f = new File(fileName); //NOTE CreateNewFile idea to handle if in the start the file doesn't exist instead of creating it manually odam el mo3eed
         Scanner s;
         try {
-            f.createNewFile();
             
+            if(f.createNewFile())
+            {
+                System.out.println("File Created !");
+            }
+            else
+            {
+                System.out.println("File Already Exists !");
             ArrayList<String> objectInfo = new ArrayList<>();
             s = new Scanner(f);
             while (s.hasNextLine()) {
@@ -33,6 +39,7 @@ public abstract class Database<ReturnType extends MainInterface> {
             for (int i = 0; i < objectInfo.size(); i++) {
                 ReturnType myObj = createRecordFrom(objectInfo.get(i));
                 insertRecord(myObj);
+            }
             }
         } catch (FileNotFoundException ex) {
             System.out.println("Error. File Not Found");
@@ -108,7 +115,7 @@ public abstract class Database<ReturnType extends MainInterface> {
    
     public void saveToFile() {
         try {
-            FileWriter w = new FileWriter(fileName);
+            FileWriter w = new FileWriter(fileName,true);
 
             for (int i = 0; i < records.size(); i++) {
                 w.write(records.get(i).lineRepresentation() + "\n");
